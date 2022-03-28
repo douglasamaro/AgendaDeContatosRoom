@@ -1,18 +1,20 @@
 package com.roomdb.roomteste.view
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.room.Room
 import com.roomdb.roomteste.R
 import com.roomdb.roomteste.data.AppDatabase
 import com.roomdb.roomteste.domain.ContatoAdapter
 import com.roomdb.roomteste.domain.entidade.Contato
+import kotlinx.android.synthetic.main.activity_cadastrar.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
@@ -22,26 +24,32 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var contatoAdapter: ContatoAdapter
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initRecyclerView()
+        val numeroDeContatos: String = ContatoAdapter().getItemCount().toString()
+        num_contatos.text =  "$numeroDeContatos contatos"
 
-       adicionar.setOnClickListener{
-           CoroutineScope(IO).launch {
-               Salvar()
-           }
+        fab.setOnClickListener { view ->
+            val intente = Intent(this@MainActivity, Cadastrar::class.java)
+            startActivity(intente)
+
+//        Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null)
+//                .show()
         }
-
         CoroutineScope(IO).launch {
             MostrarDados()
         }
      }
+
     //==========================================================================
     ///////////// SHOW DATA IN THE MAIN THREAD
     //==========================================================================
-    private fun MakeToast(msg: String) {
+    fun MakeToast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 
@@ -75,6 +83,7 @@ class MainActivity : AppCompatActivity() {
         }
         addDataSource(list)
     }
+
     //==========================================================================
     ///////////// CONNECTION THREDS
     //==========================================================================
@@ -90,52 +99,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun UpdateRecycler() {
+    suspend fun UpdateRecycler() {
         withContext(Main) {
             MostrarDados()
         }
     }
+
     //==========================================================================
     ///////////// CONNECTION WITH DAO - COROUTINE THREADS
     //==========================================================================
-    private suspend fun Salvar(){
-        try {
-            val db = Room.databaseBuilder(
-                applicationContext,
-                AppDatabase::class.java, "newContact"
-            ).build()
-
-            if(nome.text.toString().equals("") || numero.text.toString().equals("") || categoria.text.toString().equals("") || cor.text.toString().equals("")) {
-                ConnectThreads("preencha todos os campos")
-            } else {
-                val newContact = Contato(
-                    null,
-                    nome.text.toString(),
-                    numero.text.toString(),
-                    categoria.text.toString(),
-                    cor.text.toString()
-                )
-                val contatoDao = db.contatoDao()
-                contatoDao.insertAll(newContact)
-                ConnectThreads("dados salvos com sucesso")
-                nome.text.clear()
-                numero.text.clear()
-                categoria.text.clear()
-                cor.text.clear()
-                UpdateRecycler()
-
-            }
-        } catch (e: Exception) {
-            ConnectThreads("Notamos um err " + e)
-            Log.d(TAG, "message ", e)
-        }
-    }
-
     private suspend fun MostrarDados() {
         try {
             val db = Room.databaseBuilder(
                 applicationContext,
-                AppDatabase::class.java, "newContact"
+                AppDatabase::class.java, "contato"
             ).build()
 
             val contatoDao = db.contatoDao()

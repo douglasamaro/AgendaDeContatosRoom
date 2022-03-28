@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.Cadastrar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" >
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicione um novo contato"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="digite o nome"
+            android:importantForAutofill="no"
+            android:inputType="textNoSuggestions"/>
+
+        <EditText
+            android:id="@+id/numero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="digite o numero"
+            android:importantForAutofill="no"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="digite a categoria"
+            android:importantForAutofill="no"
+            android:inputType="textNoSuggestions" />
+
+        <EditText
+            android:id="@+id/cor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="digite a cor"
+            android:importantForAutofill="no"
+            android:inputType="textNoSuggestions" />
+
+        <Button
+            android:id="@+id/adicionar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="adicionar"
+            />
+
+        <TextView
+            android:id="@+id/textoMostrarDados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,60 +21,39 @@
             android:id="@+id/titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Adicione um novo contato"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/nome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="digite o nome"
-            android:importantForAutofill="no"
-            android:inputType="textNoSuggestions"/>
-
-        <EditText
-            android:id="@+id/numero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="digite o numero"
-            android:importantForAutofill="no"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/categoria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="digite a categoria"
-            android:importantForAutofill="no"
-            android:inputType="textNoSuggestions" />
-
-        <EditText
-            android:id="@+id/cor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="digite a cor"
-            android:importantForAutofill="no"
-            android:inputType="textNoSuggestions" />
-
-        <Button
-            android:id="@+id/adicionar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="adicionar"
-            />
-
-        <TextView
-            android:id="@+id/textoMostrarDados"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            />
+            android:text="Meus Contatos"
+            android:textStyle="bold"
+            android:paddingBottom="15dp"
+            android:textSize="30sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
+
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:contentDescription="u"
+        android:text="ok"
+        android:layout_margin="20dp"
+        android:colorAccent="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/num_contatos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="x contatos"
+        android:textStyle="normal"
+        android:padding="15dp"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

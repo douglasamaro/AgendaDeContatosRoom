@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.roomdb.roomteste.R
 import com.roomdb.roomteste.domain.entidade.Contato
+import com.roomdb.roomteste.view.MainActivity
 import kotlinx.android.synthetic.main.contato_layout.view.*
 
 class ContatoAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -33,7 +34,6 @@ class ContatoAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     fun setDataSet(contato: List<Contato>) {
         this.items = contato
     }
-
 
 
     class ContatosViewHolder constructor(itemView : View): RecyclerView.ViewHolder(itemView){
